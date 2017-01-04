@@ -6,4 +6,4 @@ import { AppComponent } from './app.component';
     declarations: [ AppComponent ], //Informa o que faz parte do modulo
     bootstrap: [ AppComponent ] //Informa qual component que deseja iniciar quando o modulo for carregado
 })
-class AppModule {}
+export class AppModule {}
