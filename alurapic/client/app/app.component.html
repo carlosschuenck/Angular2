@@ -2,5 +2,9 @@
     <h1 class="text-center">Alurapic - Angular 2</h1>
 </div>
 <div class="container">
-   <img class="img-responsive center-block" src="http://1.bp.blogspot.com/-VUTMh2x-FBw/UBcNGrX4MzI/AAAAAAAABGc/rYCtLkXXrJc/s1600/Render+-+Le%C3%A3o+Flamme.png" alt="leão">
+    <div class="row">
+        <painel *ngFor="let foto of fotos" class="col-md-2" titulo="{{foto.titulo}}">
+            <foto url="{{foto.url}}" title="{{foto.titulo}}"></foto>
+        </painel>
+    </div>
 </div>
