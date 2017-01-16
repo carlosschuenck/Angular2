@@ -8,19 +8,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+/**
+ * Created by Avell 1513 on 14/01/2017.
+ */
 var core_1 = require("@angular/core");
-var AppComponent = (function () {
-    function AppComponent() {
+var http_1 = require("@angular/http");
+var ListarComponent = (function () {
+    function ListarComponent(http) {
+        var _this = this;
+        this.fotos = [];
+        http
+            .get('v1/fotos')
+            .map(function (res) { return res.json(); })
+            .subscribe(function (fotos) {
+            _this.fotos = fotos;
+            console.log(_this.fotos);
+        }, function (erro) { return console.log(erro); });
     }
-    return AppComponent;
+    return ListarComponent;
 }());
-AppComponent = __decorate([
+ListarComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'app',
-        templateUrl: './app.component.html'
+        selector: 'listar',
+        templateUrl: './listar.component.html'
     }),
-    __metadata("design:paramtypes", [])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+    __metadata("design:paramtypes", [http_1.Http])
+], ListarComponent);
+exports.ListarComponent = ListarComponent;
+//# sourceMappingURL=listar.component.js.map

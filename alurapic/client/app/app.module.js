@@ -13,8 +13,11 @@ var platform_browser_1 = require("@angular/platform-browser");
 var app_component_1 = require("./app.component");
 var foto_module_1 = require("./foto/foto.module");
 var painel_module_1 = require("./painel/painel.module");
+var cadastro_component_1 = require("./cadastro/cadastro.component");
+var listar_component_1 = require("./listar/listar.component");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/map");
+var app_routes_1 = require("./app.routes");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -22,9 +25,21 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, foto_module_1.FotoModule, http_1.HttpModule, painel_module_1.PainelModule],
-        declarations: [app_component_1.AppComponent],
-        bootstrap: [app_component_1.AppComponent] //Informa qual component que deseja iniciar quando o modulo for carregado
+        imports: [
+            platform_browser_1.BrowserModule,
+            foto_module_1.FotoModule,
+            http_1.HttpModule,
+            painel_module_1.PainelModule,
+            app_routes_1.routing
+        ],
+        declarations: [
+            app_component_1.AppComponent,
+            cadastro_component_1.CadastroComponent,
+            listar_component_1.ListarComponent
+        ],
+        bootstrap: [
+            app_component_1.AppComponent
+        ] //Informa qual component que deseja iniciar quando o modulo for carregado
     }),
     __metadata("design:paramtypes", [])
 ], AppModule);
