@@ -8,30 +8,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-/**
- * Created by Avell 1513 on 04/01/2017.
- */
 var core_1 = require("@angular/core");
-var FotoComponent = (function () {
-    function FotoComponent() {
+var FiltrarPorTitulo = (function () {
+    function FiltrarPorTitulo() {
     }
-    return FotoComponent;
+    FiltrarPorTitulo.prototype.transform = function (listaFotos, filtroDigitado) {
+        console.log(listaFotos);
+        console.log(filtroDigitado);
+        filtroDigitado = filtroDigitado.toLowerCase();
+        return listaFotos.filter(function (foto) { return foto.titulo.toLowerCase().includes(filtroDigitado); });
+    };
+    return FiltrarPorTitulo;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], FotoComponent.prototype, "url", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], FotoComponent.prototype, "titulo", void 0);
-FotoComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'foto',
-        templateUrl: './foto.component.html'
+FiltrarPorTitulo = __decorate([
+    core_1.Pipe({
+        name: 'filtrarPorTitulo'
     }),
     __metadata("design:paramtypes", [])
-], FotoComponent);
-exports.FotoComponent = FotoComponent;
-//# sourceMappingURL=foto.component.js.map
+], FiltrarPorTitulo);
+exports.FiltrarPorTitulo = FiltrarPorTitulo;
+//# sourceMappingURL=foto.pipes.js.map

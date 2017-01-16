@@ -18,6 +18,7 @@ var listar_component_1 = require("./listar/listar.component");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/map");
 var app_routes_1 = require("./app.routes");
+var forms_1 = require("@angular/forms");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -30,7 +31,8 @@ AppModule = __decorate([
             foto_module_1.FotoModule,
             http_1.HttpModule,
             painel_module_1.PainelModule,
-            app_routes_1.routing
+            app_routes_1.routing,
+            forms_1.FormsModule
         ],
         declarations: [
             app_component_1.AppComponent,
