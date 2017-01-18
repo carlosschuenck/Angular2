@@ -8,7 +8,7 @@ import {ListarComponent} from './listar/listar.component';
 import {HttpModule} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {routing} from './app.routes';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -18,7 +18,8 @@ import {FormsModule} from '@angular/forms';
         HttpModule,
         PainelModule,
         routing,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ], //para rodar no navegador tem que importar o BrowserModule, se fosse outra plataforma, seria outro import
     declarations: [
         AppComponent,
