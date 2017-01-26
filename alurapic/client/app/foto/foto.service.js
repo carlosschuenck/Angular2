@@ -8,30 +8,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-/**
- * Created by Avell 1513 on 07/01/2017.
- */
+var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
-var PainelComponent = (function () {
-    function PainelComponent() {
+var FotoService = (function () {
+    function FotoService(http) {
+        this.url = 'v1/fotos';
+        this.http = http;
+        this.headers = new http_1.Headers();
+        this.headers.append('Content-Type', 'application/json');
     }
-    PainelComponent.prototype.ngOnInit = function () {
-        this.titulo = this.titulo.length > 7 ? this.titulo.substr(0, 7) + "..." : this.titulo;
+    FotoService.prototype.listar = function () {
+        return this.http
+            .get(this.url)
+            .map(function (res) { return res.json(); });
     };
-    return PainelComponent;
+    FotoService.prototype.cadastra = function (foto) {
+        return this.http.post(this.url, JSON.stringify(foto), { headers: this.headers });
+    };
+    return FotoService;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], PainelComponent.prototype, "titulo", void 0);
-PainelComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'painel',
-        templateUrl: './painel.component.html',
-        styleUrls: ['./painel.component.css']
-    }),
-    __metadata("design:paramtypes", [])
-], PainelComponent);
-exports.PainelComponent = PainelComponent;
-//# sourceMappingURL=painel.component.js.map
+FotoService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], FotoService);
+exports.FotoService = FotoService;
+//# sourceMappingURL=foto.service.js.map

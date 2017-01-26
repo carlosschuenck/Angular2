@@ -6,7 +6,8 @@ import {Component, Input} from '@angular/core';
 @Component({
     moduleId: module.id, /*recurso utilizado para poder buscar arquivos a partir da pasta que está sendo utilizada e não escrever o caminho todo, logo abaixo um exemplo ex: templateUrl*/
     selector: 'foto',
-    templateUrl: './foto.component.html'
+    templateUrl: './foto.component.html',
+    styleUrls: ['./foto.component.css']
 })
 export class FotoComponent {
 

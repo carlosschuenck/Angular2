@@ -2,7 +2,8 @@
  * Created by Avell 1513 on 14/01/2017.
  */
 import {Component} from '@angular/core';
-import {Http} from '@angular/http';
+import {FotoService} from '../foto/foto.service';
+import {FotoComponent} from '../foto/foto.component';
 
 @Component({
     moduleId: module.id,
@@ -11,18 +12,13 @@ import {Http} from '@angular/http';
 })
 export class ListarComponent {
 
-    fotos: Object[] = [];
+    fotos: FotoComponent[] = [];
 
-    constructor(http: Http) {
-
-        http
-            .get('v1/fotos')
-            .map(res => res.json())
-            .subscribe(fotos => {
-                this.fotos = fotos;
-                console.log(this.fotos);
-            }, erro => console.log(erro))
-
+    constructor(service: FotoService) {
+        service.listar()
+               .subscribe(fotos => this.fotos = fotos, 
+                          erro => console.log(erro)
+                          );
     }
 
 }

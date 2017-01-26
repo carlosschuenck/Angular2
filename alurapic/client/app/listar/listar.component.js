@@ -12,18 +12,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Created by Avell 1513 on 14/01/2017.
  */
 var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
+var foto_service_1 = require("../foto/foto.service");
 var ListarComponent = (function () {
-    function ListarComponent(http) {
+    function ListarComponent(service) {
         var _this = this;
         this.fotos = [];
-        http
-            .get('v1/fotos')
-            .map(function (res) { return res.json(); })
-            .subscribe(function (fotos) {
-            _this.fotos = fotos;
-            console.log(_this.fotos);
-        }, function (erro) { return console.log(erro); });
+        service.listar()
+            .subscribe(function (fotos) { return _this.fotos = fotos; }, function (erro) { return console.log(erro); });
     }
     return ListarComponent;
 }());
@@ -33,7 +28,7 @@ ListarComponent = __decorate([
         selector: 'listar',
         templateUrl: './listar.component.html'
     }),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [foto_service_1.FotoService])
 ], ListarComponent);
 exports.ListarComponent = ListarComponent;
 //# sourceMappingURL=listar.component.js.map
