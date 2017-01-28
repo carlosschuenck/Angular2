@@ -17,9 +17,26 @@ var ListarComponent = (function () {
     function ListarComponent(service) {
         var _this = this;
         this.fotos = [];
-        service.listar()
+        this.mensagem = '';
+        this.service = service;
+        this.service.listar()
             .subscribe(function (fotos) { return _this.fotos = fotos; }, function (erro) { return console.log(erro); });
     }
+    ListarComponent.prototype.remove = function (foto) {
+        var _this = this;
+        this.service.remove(foto)
+            .subscribe(function () {
+            console.log("Foto excluída com sucesso");
+            var novasFotos = _this.fotos.slice(0);
+            var indice = novasFotos.indexOf(foto);
+            novasFotos.splice(indice, 1);
+            _this.fotos = novasFotos;
+            _this.mensagem = 'Foto foi removida com sucesso';
+        }, function (erro) {
+            console.log(erro);
+            _this.mensagem = 'Não foi possível remover a foto';
+        });
+    };
     return ListarComponent;
 }());
 ListarComponent = __decorate([
