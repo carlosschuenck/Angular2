@@ -8,6 +8,7 @@ var listar_component_1 = require("./listar/listar.component");
 var appRoutes = [
     { path: '', component: listar_component_1.ListarComponent },
     { path: 'cadastro', component: cadastro_component_1.CadastroComponent },
+    { path: 'cadastro/:id', component: cadastro_component_1.CadastroComponent },
     { path: '**', component: listar_component_1.ListarComponent }
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

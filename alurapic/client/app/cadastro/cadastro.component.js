@@ -15,10 +15,23 @@ var core_1 = require("@angular/core");
 var foto_component_1 = require("../foto/foto.component");
 var forms_1 = require("@angular/forms");
 var foto_service_1 = require("../foto/foto.service");
+var router_1 = require("@angular/router");
 var CadastroComponent = (function () {
-    function CadastroComponent(service, fb) {
+    function CadastroComponent(service, fb, route, router) {
+        var _this = this;
         this.foto = new foto_component_1.FotoComponent();
+        this.mensagem = '';
         this.service = service;
+        this.route = route;
+        this.router = router;
+        this.route.params.subscribe(function (params) {
+            var id = params['id'];
+            if (id) {
+                _this.service
+                    .buscaPorID(id)
+                    .subscribe(function (foto) { return _this.foto = foto; }, function (erro) { return console.log(erro); });
+            }
+        });
         this.meuForm = fb.group({
             titulo: ['', forms_1.Validators.compose([
                     forms_1.Validators.required,
@@ -36,6 +49,7 @@ var CadastroComponent = (function () {
             .subscribe(function () {
             _this.foto = new foto_component_1.FotoComponent();
             console.log("Foto cadastrada com sucesso!");
+            _this.router.navigate(['']);
         }, function (erro) {
             console.log("Erro ao tentar cadastrar uma foto: " + erro);
         });
@@ -48,7 +62,7 @@ CadastroComponent = __decorate([
         selector: 'cadastro',
         templateUrl: './cadastro.component.html'
     }),
-    __metadata("design:paramtypes", [foto_service_1.FotoService, forms_1.FormBuilder])
+    __metadata("design:paramtypes", [foto_service_1.FotoService, forms_1.FormBuilder, router_1.ActivatedRoute, router_1.Router])
 ], CadastroComponent);
 exports.CadastroComponent = CadastroComponent;
 //# sourceMappingURL=cadastro.component.js.map

@@ -6,6 +6,7 @@ import { FotoComponent } from '../foto/foto.component';
 import { Http, Headers } from '@angular/http';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FotoService} from '../foto/foto.service';
+import { ActivatedRoute, Router} from '@angular/router'
 
 @Component({
     moduleId:  module.id,
@@ -18,9 +19,28 @@ export class CadastroComponent {
     http: Http;
     meuForm: FormGroup;
     service: FotoService;
+    route: ActivatedRoute;
+    mensagem: string = '';
+    router: Router;
 
-    constructor(service: FotoService, fb: FormBuilder){
+    constructor(service: FotoService, fb: FormBuilder, route: ActivatedRoute, router: Router){
         this.service = service;
+        this.route = route;
+        this.router = router;
+        
+        this.route.params.subscribe(
+            params => {
+                let id = params['id'];
+                if(id){
+                    this.service
+                        .buscaPorID(id)
+                        .subscribe(
+                            foto => this.foto = foto,
+                            erro => console.log(erro)
+                        );
+                }
+            }
+        );
         this.meuForm = fb.group({
             titulo: ['', Validators.compose([
                                 Validators.required, 
@@ -39,6 +59,7 @@ export class CadastroComponent {
                     .subscribe(() => {
                                         this.foto = new FotoComponent();
                                         console.log("Foto cadastrada com sucesso!");
+                                        this.router.navigate(['']);
                                     }, 
                                     erro => {
                                         console.log("Erro ao tentar cadastrar uma foto: "+erro)

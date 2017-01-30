@@ -9,6 +9,7 @@ import {ListarComponent} from './listar/listar.component';
 const appRoutes: Routes = [
     { path: '', component: ListarComponent},
     { path: 'cadastro', component: CadastroComponent},
+    { path: 'cadastro/:id', component: CadastroComponent},
     { path: '**', component: ListarComponent}
 ];
 
