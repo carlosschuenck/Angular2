@@ -45,11 +45,13 @@ var CadastroComponent = (function () {
         var _this = this;
         event.preventDefault();
         console.log(this.foto);
-        this.service.cadastra(this.foto)
-            .subscribe(function () {
+        this.service
+            .cadastra(this.foto)
+            .subscribe(function (res) {
+            _this.mensagem = res.mensagem;
             _this.foto = new foto_component_1.FotoComponent();
-            console.log("Foto cadastrada com sucesso!");
-            _this.router.navigate(['']);
+            if (!res.inclusao)
+                _this.router.navigate(['']);
         }, function (erro) {
             console.log("Erro ao tentar cadastrar uma foto: " + erro);
         });
