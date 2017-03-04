@@ -9,6 +9,7 @@ import {HttpModule} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {routing} from './app.routes';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { BotaoModule } from './botao/botao.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         PainelModule,
         routing,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        BotaoModule
     ], //para rodar no navegador tem que importar o BrowserModule, se fosse outra plataforma, seria outro import
     declarations: [
         AppComponent,
